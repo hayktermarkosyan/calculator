@@ -1,13 +1,22 @@
-.btnPrivSet {
+.calc-btn {
     width: 60px;
     background: rgb(217, 228, 241);
     height: 60px;
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 45px;
     user-select: none;
     border-color: black;
     margin: 2px;
+    font-weight: 600;
+}
+
+.btn-c {
+    background-color: coral;
+}
+
+.btn-sign {
+    background-color: orange;
 }
 
 .btn:hover {
@@ -22,13 +31,15 @@
 }
 
 #calc {
-    width: 260px;
+    width: 270px;
     display: inline-block;
 }
 
 #inputVal {
     width: 100%;
-    border-color: black;
+    height: 50px;
+    padding-top: 7px;
+    border-color: rgb(173, 173, 173);
     font-size: 20px;
     resize: vertical;
 }
