@@ -10,9 +10,8 @@ window.addEventListener('load', function OnWindowLoaded() {
         const n = e.target.dataset['number'];
 
         if (state == 1 && temp != '') { // after sign
-            result = temp;
+            result = +temp;
             temp = '';
-            state = 0;
         }
         state = 0;
         if (n == '0' && temp == '0') {
@@ -33,6 +32,7 @@ window.addEventListener('load', function OnWindowLoaded() {
         state = 1;
         const s = e.target.dataset['sign'];
 
+
         if (s == '=') {
             switch (sign) {
                 case '+':
@@ -50,25 +50,47 @@ window.addEventListener('load', function OnWindowLoaded() {
                 default:
                     break;
             }
+            inputVal.value = '';
             show(result);
             state = 0;
             temp = '';
             return;
         }
-
+        show(s);
         sign = s;
+
     }
 
     function onClearClick(e) {
-        result = 0;
+        inputVal.value = '0';
         temp = '';
         sign = undefined;
         state = 0;
-        show(result);
     }
 
     function show(data) {
-        inputVal.value = data;
+        let str = '';
+
+        if (isNaN(data) && data != '=') {
+            inputVal.value += data;
+            return;
+        }
+
+        if (result && data == '=') {
+            inputVal.value = result.toString();
+            return;
+        }
+
+        if (isNaN(inputVal.value)) {
+            inputVal.value += data.slice(-1);
+            return;
+        }
+
+        if (data) {
+            str += data;
+        }
+
+        inputVal.value = str;
     }
 
     document.querySelectorAll('.btn-number').forEach(function(btn) {
