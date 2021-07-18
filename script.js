@@ -1,16 +1,17 @@
 window.addEventListener('load', function OnWindowLoaded() {
-
     let result = 0;
     let temp = '';
     let sign = undefined;
     let inputVal = document.getElementById('inputVal');
     let state = 0;
+    let values = [];
+    let intermedRes = 0;
 
     function onNumberClick(e) {
         const n = e.target.dataset['number'];
 
         if (state == 1 && temp != '') { // after sign
-            result = +temp;
+            // result = +temp;
             temp = '';
         }
         state = 0;
@@ -30,26 +31,33 @@ window.addEventListener('load', function OnWindowLoaded() {
             return;
         }
         state = 1;
+        values.push(temp);
         const s = e.target.dataset['sign'];
-
+        values.push(s);
 
         if (s == '=') {
-            switch (sign) {
-                case '+':
-                    result = +(result) + +(temp);
-                    break;
-                case '-':
-                    result -= temp;
-                    break;
-                case '*':
-                    result *= temp;
-                    break;
-                case '/':
-                    result /= temp;
-                    break;
-                default:
-                    break;
+
+            for (let i = 0; i < values.length; i++) {
+                if (values[i] == '*' || values[i] == '/') {
+                    intermedRes = eval(values[i - 1] + values[i] + values[i + 1]);
+                    values.splice(i - 1, 3);
+                    values.splice(i - 1, 0, intermedRes.toString());
+                    i = 0;
+                }
             }
+
+            for (let i = 0; i < values.length; i++) {
+                if (values[i] == '+' || values[i] == '-') {
+                    intermedRes = eval(values[i - 1] + values[i] + values[i + 1]);
+                    values.splice(i - 1, 3);
+                    values.splice(i - 1, 0, intermedRes.toString());
+                    i = 0;
+                }
+            }
+
+            result = values[0];
+
+
             inputVal.value = '';
             show(result);
             state = 0;
@@ -64,6 +72,7 @@ window.addEventListener('load', function OnWindowLoaded() {
     function onClearClick(e) {
         inputVal.value = '0';
         temp = '';
+        values = [];
         sign = undefined;
         state = 0;
     }
