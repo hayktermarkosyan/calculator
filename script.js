@@ -1,7 +1,6 @@
 window.addEventListener('load', function OnWindowLoaded() {
     let result = 0;
     let temp = '';
-    let sign = undefined;
     let inputVal = document.getElementById('inputVal');
     let state = 0;
     let values = [];
@@ -11,7 +10,6 @@ window.addEventListener('load', function OnWindowLoaded() {
         const n = e.target.dataset['number'];
 
         if (state == 1 && temp != '') { // after sign
-            // result = +temp;
             temp = '';
         }
         state = 0;
@@ -65,7 +63,6 @@ window.addEventListener('load', function OnWindowLoaded() {
             return;
         }
         show(s);
-        sign = s;
 
     }
 
@@ -73,7 +70,6 @@ window.addEventListener('load', function OnWindowLoaded() {
         inputVal.value = '0';
         temp = '';
         values = [];
-        sign = undefined;
         state = 0;
     }
 
