@@ -242,12 +242,16 @@ window.addEventListener('load', function OnWindowLoaded() {
                         if (isNaN(totalVal[i]) === false) {
                             temp += totalVal[i];
                         } else {
+                            if (i = totalVal.length - 1) {
+                                values.push(temp);
+                            }
                             break;
                         }
                     }
     
                     temp = temp.split("").reverse().join("");
                     values.pop();
+                    temp = "";
                 }                
             }
             
@@ -270,7 +274,16 @@ window.addEventListener('load', function OnWindowLoaded() {
                     inputVal.value = '0';
                     temp = "";
                 } else {
-                    values.map(value => show(value));
+                    values.push(temp)
+                    let totalVal = "";
+
+                    values.map(value => totalVal += value);
+                    
+                    if (totalVal !== "") {
+                        show(totalVal);
+                    }
+
+                    temp = "";
                 }
             }
         }
