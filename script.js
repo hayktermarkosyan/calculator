@@ -252,6 +252,10 @@ window.addEventListener('load', function OnWindowLoaded() {
                     temp = temp.split("").reverse().join("");
                     values.pop();
                     temp = "";
+                    if (result) {
+                        values.push(result);
+                    }
+                    result = 0;
                 }                
             }
             
@@ -291,6 +295,7 @@ window.addEventListener('load', function OnWindowLoaded() {
         if (s != "del") {
             show(s);               
         }
+        result = 0;
     }
 
     function onClearClick(e) {
@@ -298,6 +303,7 @@ window.addEventListener('load', function OnWindowLoaded() {
         temp = '';
         values = [];
         state = 0;
+        result = 0;
     }
 
     function show(data) {
