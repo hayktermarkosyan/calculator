@@ -53,9 +53,13 @@
 }
 
 @media screen and (max-width: 720px) and (min-width: 540px) {
-    
+    #calc-wrap {
+        margin: 70px auto;
+    }
 }
 
 @media screen and (max-width: 540px) {
-    
+    #calc-wrap {
+        margin: 40px auto;
+    }
 }
